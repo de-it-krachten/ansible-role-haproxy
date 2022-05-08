@@ -15,12 +15,14 @@
       copy:
         content: node1
         dest: /usr/share/nginx/html/index.html
+        mode: "0644"
       when: inventory_hostname == groups['nginx'][0]
 
     - name: Create index.html for node2
       copy:
         content: node2
         dest: /usr/share/nginx/html/index.html
+        mode: "0644"
       when: inventory_hostname == groups['nginx'][1]
 
 
