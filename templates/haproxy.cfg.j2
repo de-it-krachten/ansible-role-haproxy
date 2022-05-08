@@ -1,0 +1,49 @@
+global
+{% for key, value in haproxy_config.global.items() %}
+{% if value | type_debug == 'list' %}
+{% for value1 in value %}
+  {{ key }} {{ value1 }}
+{% endfor %}
+{% else %}
+  {{ key }} {{ value }}
+{% endif %}
+{% endfor %}
+
+defaults
+{% for key, value in haproxy_config.defaults.items() %}
+{% if value | type_debug == 'list' %}
+{% for value1 in value %}
+  {{ key }} {{ value1 }}
+{% endfor %}
+{% else %}
+  {{ key }} {{ value }}
+{% endif %}
+{% endfor %}
+
+{% for frontend in haproxy_frontends %}
+frontend {{ frontend.name }}
+{% for key, value in frontend.options.items() %}
+{% if value | type_debug == 'list' %}
+{% for value1 in value %}
+  {{ key }} {{ value1 }}
+{% endfor %}
+{% else %}
+  {{ key }} {{ value }}
+{% endif %}
+{% endfor %}
+
+{% endfor %}
+
+{% for backend in haproxy_backends %}
+backend {{ backend.name }}
+{% for key, value in backend.options.items() %}
+{% if value | type_debug == 'list' %}
+{% for value1 in value %}
+  {{ key }} {{ value1 }}
+{% endfor %}
+{% else %}
+  {{ key }} {{ value }}
+{% endif %}
+{% endfor %}
+
+{% endfor %}

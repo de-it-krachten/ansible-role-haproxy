@@ -1,0 +1,47 @@
+---
+
+- name: Load variables based on OS type
+  include_vars: "{{ lookup('first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+        - "{{ ansible_distribution }}.yml"
+        - "family-{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml"
+        - "family-{{ ansible_os_family }}.yml"
+        - default.yml
+      paths:
+        - "vars"
+
+- name: Install packages
+  package:
+    name: "{{ haproxy_packages }}"
+    state: present
+
+- name: Allow IP forwarding
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: "1"
+    sysctl_set: yes
+    state: present
+
+- name: Create configuration from template
+  template:
+    src: templates/haproxy.cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
+    mode: 0644
+    group: root
+    owner: root
+  notify: Restart haproxy
+  
+- name: Start services
+  systemd:
+    name: haproxy
+    state: started
+    enabled: yes
+
+- name: Open firewall ports
+  include_role:
+    name: firewall
+  vars:
+    firewall_ports: "{{ haproxy_firewall_ports }}"

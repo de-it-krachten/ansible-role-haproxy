@@ -1,0 +1,24 @@
+---
+
+# Generic
+generic:
+  role: ansible-role-haproxy
+  role_short: haproxy
+  role_description: |
+    Manage HAProxy
+
+github:
+  fail_fast: false
+
+molecule:
+  prepare:
+   vars:
+     prepare_firewall: true
+
+ci_templates:
+  molecule.yml.j2:
+    force: false
+  converge.yml:
+    force: false
+  verify.yml:
+    force: false

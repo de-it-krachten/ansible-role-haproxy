@@ -1,0 +1,26 @@
+---
+
+haproxy_firewall_ports:
+  - 80
+
+haproxy_config:
+  global:
+    log: 127.0.0.1 local2
+    chroot: /var/lib/haproxy
+    pidfile: /var/run/haproxy.pid
+    maxconn: 4000
+    user: haproxy
+    group: haproxy
+    daemon:
+    stats: socket /var/lib/haproxy/stats user haproxy group haproxy mode 660 level operator
+  defaults:
+    log: global
+    option:
+      - dontlognull
+      - redispatch
+    timeout:
+      - queue 1m
+      - connect 10s
+      - client 1m
+      - server 1m
+      - check 10s
