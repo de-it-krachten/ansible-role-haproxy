@@ -3,6 +3,8 @@
 - hosts: nginx
   roles:
     - nginx
+  vars:
+    nginx_default_server: true
   tasks:
     - name: Open firewall ports
       include_role:

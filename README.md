@@ -33,17 +33,18 @@ haproxy_firewall_ports:
 
 haproxy_config:
   global:
-    log: 127.0.0.1 local2
+    log: 127.0.0.1 local0
     chroot: /var/lib/haproxy
+    stats: socket /var/lib/haproxy/stats user haproxy group haproxy mode 660 level operator
     pidfile: /var/run/haproxy.pid
-    maxconn: 4000
     user: haproxy
     group: haproxy
     daemon:
-    stats: socket /var/lib/haproxy/stats user haproxy group haproxy mode 660 level operator
   defaults:
     log: global
+    mode: http
     option:
+      - httplog
       - dontlognull
       - redispatch
     timeout:
@@ -62,6 +63,8 @@ Example Playbook
 - hosts: nginx
   roles:
     - nginx
+  vars:
+    nginx_default_server: true
   tasks:
     - name: Open firewall ports
       include_role:
@@ -74,12 +77,14 @@ Example Playbook
       copy:
         content: node1
         dest: /usr/share/nginx/html/index.html
+        mode: "0644"
       when: inventory_hostname == groups['nginx'][0]
 
     - name: Create index.html for node2
       copy:
         content: node2
         dest: /usr/share/nginx/html/index.html
+        mode: "0644"
       when: inventory_hostname == groups['nginx'][1]
 
 

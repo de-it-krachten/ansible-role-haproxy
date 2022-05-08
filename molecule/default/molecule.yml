@@ -10,8 +10,8 @@ lint: |
   ansible-lint
 platforms:
 
-  - name: nginx-node1-rockylinux8
-    image: "geerlingguy/docker-rockylinux8-ansible:latest"
+  - name: nginx-node1-ubuntu2004
+    image: "geerlingguy/docker-ubuntu2004-ansible:latest"
     command: ${MOLECULE_DOCKER_COMMAND:-""}
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
@@ -19,8 +19,8 @@ platforms:
     pre_build_image: true
     groups:
       - nginx
-  - name: nginx-node2-rockylinux8
-    image: "geerlingguy/docker-rockylinux8-ansible:latest"
+  - name: nginx-node2-ubuntu2004
+    image: "geerlingguy/docker-ubuntu2004-ansible:latest"
     command: ${MOLECULE_DOCKER_COMMAND:-""}
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
@@ -28,8 +28,8 @@ platforms:
     pre_build_image: true
     groups:
       - nginx
-  - name: haproxy-master-rockylinux8
-    image: "geerlingguy/docker-rockylinux8-ansible:latest"
+  - name: haproxy-master-ubuntu2004
+    image: "geerlingguy/docker-ubuntu2004-ansible:latest"
     command: ${MOLECULE_DOCKER_COMMAND:-""}
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
@@ -50,8 +50,8 @@ platforms:
     groups:
       - haproxy
       - keepalived_master
-  - name: haproxy-backup-rockylinux8
-    image: "geerlingguy/docker-rockylinux8-ansible:latest"
+  - name: haproxy-backup-ubuntu2004
+    image: "geerlingguy/docker-ubuntu2004-ansible:latest"
     command: ${MOLECULE_DOCKER_COMMAND:-""}
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
