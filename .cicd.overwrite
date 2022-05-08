@@ -22,3 +22,5 @@ ci_templates:
     force: false
   verify.yml:
     force: false
+  requirements.yml:
+    force: false
