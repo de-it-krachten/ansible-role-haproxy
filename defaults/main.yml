@@ -12,6 +12,7 @@ haproxy_config:
     user: haproxy
     group: haproxy
     daemon:
+    maxconn: 512
   defaults:
     log: global
     mode: http
