@@ -24,10 +24,9 @@ roles:
     scm: git
   - name: keepalived
     src: https://github.com/de-it-krachten/ansible-role-keepalived.git
-    # version: main
-    version: dev
+    version: main
     scm: git
   - name: nginx
     src: https://github.com/de-it-krachten/ansible-role-nginx.git
-    version: dev
+    version: main
     scm: git
