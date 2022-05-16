@@ -1,6 +1,65 @@
----
+[![CI](https://github.com/de-it-krachten/ansible-role-haproxy/workflows/CI/badge.svg?event=push)](https://github.com/de-it-krachten/ansible-role-haproxy/actions?query=workflow%3ACI)
 
-- name: Converge
+
+# ansible-role-haproxy
+
+Manage HAProxy
+
+
+Platforms
+--------------
+
+Supported platforms
+
+- Red Hat Enterprise Linux 7<sup>1</sup>
+- Red Hat Enterprise Linux 8<sup>1</sup>
+- RockyLinux 8
+- AlmaLinux 8<sup>1</sup>
+- Debian 10 (Buster)
+- Debian 11 (Bullseye)
+- Ubuntu 20.04 LTS
+- Ubuntu 22.04 LTS
+
+Note:
+<sup>1</sup> : no automated testing is performed on these platforms
+
+Role Variables
+--------------
+<pre><code>
+haproxy_firewall_ports:
+  - 80
+
+haproxy_config:
+  global:
+    log: 127.0.0.1 local0
+    chroot: /var/lib/haproxy
+    stats: socket /var/lib/haproxy/stats user haproxy group haproxy mode 660 level operator
+    pidfile: /var/run/haproxy.pid
+    user: haproxy
+    group: haproxy
+    daemon:
+    maxconn: 512
+  defaults:
+    log: global
+    mode: http
+    option:
+      - httplog
+      - dontlognull
+      - redispatch
+    timeout:
+      - queue 1m
+      - connect 10s
+      - client 1m
+      - server 1m
+      - check 10s
+</pre></code>
+
+
+Example Playbook
+----------------
+
+<pre><code>
+- name: sample playbook for role 'haproxy'
   hosts: nginx
   roles:
     - nginx
@@ -29,7 +88,7 @@
       when: inventory_hostname == groups['nginx'][1]
 
 
-- name: Converge
+- name: sample playbook for role 'haproxy'
   hosts: haproxy
   vars:
     haproxy_firewall_ports:
@@ -118,6 +177,7 @@
         nginx_node1: "{{ groups['nginx'][0] }}"
         nginx_node2: "{{ groups['nginx'][1] }}"
 
-    - name: Include role 'ansible-role-haproxy'
+    - name: Include role 'haproxy'
       include_role:
-        name: ansible-role-haproxy
+        name: haproxy
+</pre></code>

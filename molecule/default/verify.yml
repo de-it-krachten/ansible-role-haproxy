@@ -5,6 +5,40 @@
   hosts: all
   gather_facts: false
   tasks:
-  - name: Example assertion
-    assert:
-      that: true
+
+    - name: First attempt
+      get_url:
+        url: http://172.17.0.100
+        dest: /tmp/test1
+      run_once: yes
+      delegate_to: localhost
+
+    - name: Second attempt
+      get_url:
+        url: http://172.17.0.100
+        dest: /tmp/test2
+      run_once: yes
+      delegate_to: localhost
+
+    - name: Load result1
+      command: cat /tmp/test1
+      register: _node1
+      changed_when: false 
+      run_once: yes
+      delegate_to: localhost
+   
+    - name: Load result2
+      command: cat /tmp/test2
+      register: _node2
+      changed_when: false 
+      run_once: yes
+      delegate_to: localhost
+   
+    - name: assert
+      assert:
+        that:
+          - _node1.stdout is search('node')        
+          - _node2.stdout is search('node')        
+          - _node1.stdout != _node2.stdout       
+      run_once: yes
+      delegate_to: localhost
