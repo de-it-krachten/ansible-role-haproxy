@@ -6,25 +6,29 @@
 Manage HAProxy
 
 
-Platforms
---------------
+## Platforms
 
 Supported platforms
 
 - Red Hat Enterprise Linux 7<sup>1</sup>
 - Red Hat Enterprise Linux 8<sup>1</sup>
+- CentOS 7
+- CentOS 8
 - RockyLinux 8
 - AlmaLinux 8<sup>1</sup>
 - Debian 10 (Buster)
 - Debian 11 (Bullseye)
+- Ubuntu 18.04 LTS
 - Ubuntu 20.04 LTS
 - Ubuntu 22.04 LTS
+- Fedora 35
+- Fedora 36
 
 Note:
 <sup>1</sup> : no automated testing is performed on these platforms
 
-Role Variables
---------------
+## Role Variables
+### defaults/main.yml
 <pre><code>
 haproxy_firewall_ports:
   - 80
@@ -54,10 +58,24 @@ haproxy_config:
       - check 10s
 </pre></code>
 
+### vars/family-RedHat.yml
+<pre><code>
+# List of packages required for haproxy
+haproxy_packages:
+  - haproxy
+</pre></code>
 
-Example Playbook
-----------------
+### vars/family-Debian.yml
+<pre><code>
+# List of packages required for haproxy
+haproxy_packages:
+  - haproxy
+</pre></code>
 
+
+
+## Example Playbook
+### molecule/default/converge.yml
 <pre><code>
 - name: sample playbook for role 'haproxy'
   hosts: nginx
