@@ -7,6 +7,14 @@ generic:
   role_description: |
     Manage HAProxy
 
+platforms:
+  fedora35:
+    ci: false
+    supported: false
+  fedora36:
+    ci: false
+    supported: false
+
 molecule:
   prepare:
     vars:
