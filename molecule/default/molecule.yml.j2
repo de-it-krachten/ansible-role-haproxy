@@ -11,7 +11,7 @@ lint: |
 platforms:
 {% for platform in MOLECULE_DISTROS %}
   - name: nginx-node1-{{ platform }}
-    image: "geerlingguy/docker-{{ platform }}-ansible:latest"
+    image: "geerlingguy/docker-{{ platform.name }}-ansible:latest"
     command: ${MOLECULE_DOCKER_COMMAND:-""}
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
@@ -20,7 +20,7 @@ platforms:
     groups:
       - nginx
   - name: nginx-node2-{{ platform }}
-    image: "geerlingguy/docker-{{ platform }}-ansible:latest"
+    image: "geerlingguy/docker-{{ platform.name }}-ansible:latest"
     command: ${MOLECULE_DOCKER_COMMAND:-""}
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
@@ -29,7 +29,7 @@ platforms:
     groups:
       - nginx
   - name: haproxy-master-{{ platform }}
-    image: "geerlingguy/docker-{{ platform }}-ansible:latest"
+    image: "geerlingguy/docker-{{ platform.name }}-ansible:latest"
     command: ${MOLECULE_DOCKER_COMMAND:-""}
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
@@ -51,7 +51,7 @@ platforms:
       - haproxy
       - keepalived_master
   - name: haproxy-backup-{{ platform }}
-    image: "geerlingguy/docker-{{ platform }}-ansible:latest"
+    image: "geerlingguy/docker-{{ platform.name }}-ansible:latest"
     command: ${MOLECULE_DOCKER_COMMAND:-""}
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
