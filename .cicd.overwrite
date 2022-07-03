@@ -7,9 +7,6 @@ generic:
   role_description: |
     Manage HAProxy
 
-github:
-  fail_fast: false
-
 molecule:
   prepare:
     vars:
