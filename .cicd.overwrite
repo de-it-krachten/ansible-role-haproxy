@@ -31,13 +31,13 @@ molecule:
   prepare:
     vars:
       prepare_firewall: true
+  requirements:
+    roles_extra:
+      - keepalived
+      - nginx
 
 ci_templates:
   molecule.yml.j2:
     force: false
   converge.yml:
-    force: false
-  verify.yml:
-    force: false
-  requirements.yml:
     force: false
