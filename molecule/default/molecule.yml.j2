@@ -10,8 +10,8 @@ lint: |
   ansible-lint
 platforms:
 {% for platform in MOLECULE_DISTROS %}
-  - name: nginx-node1-{{ platform }}
-    image: "geerlingguy/docker-{{ platform }}-ansible:latest"
+  - name: nginx-node1-{{ platform.name }}
+    image: "{{ platform.image }}"
     command: ${MOLECULE_DOCKER_COMMAND:-""}
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
@@ -19,8 +19,8 @@ platforms:
     pre_build_image: true
     groups:
       - nginx
-  - name: nginx-node2-{{ platform }}
-    image: "geerlingguy/docker-{{ platform }}-ansible:latest"
+  - name: nginx-node2-{{ platform.name }}
+    image: "{{ platform.image }}"
     command: ${MOLECULE_DOCKER_COMMAND:-""}
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
@@ -28,8 +28,8 @@ platforms:
     pre_build_image: true
     groups:
       - nginx
-  - name: haproxy-master-{{ platform }}
-    image: "geerlingguy/docker-{{ platform }}-ansible:latest"
+  - name: haproxy-master-{{ platform.name }}
+    image: "{{ platform.image }}"
     command: ${MOLECULE_DOCKER_COMMAND:-""}
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
@@ -50,8 +50,8 @@ platforms:
     groups:
       - haproxy
       - keepalived_master
-  - name: haproxy-backup-{{ platform }}
-    image: "geerlingguy/docker-{{ platform }}-ansible:latest"
+  - name: haproxy-backup-{{ platform.name }}
+    image: "{{ platform.image }}"
     command: ${MOLECULE_DOCKER_COMMAND:-""}
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
