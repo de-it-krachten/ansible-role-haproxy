@@ -8,6 +8,18 @@ generic:
     Manage HAProxy
 
 platforms:
+  rhel7:
+    ci: false
+    supported: false
+  centos7:
+    ci: false
+    supported: false
+  debian10:
+    ci: false
+    supported: false
+  ubuntu1804:
+    ci: false
+    supported: false
   fedora35:
     ci: false
     supported: false
