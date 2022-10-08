@@ -23,22 +23,22 @@
     - name: Load result1
       command: cat /tmp/test1
       register: _node1
-      changed_when: false 
+      changed_when: false
       run_once: yes
       delegate_to: localhost
-   
+
     - name: Load result2
       command: cat /tmp/test2
       register: _node2
-      changed_when: false 
+      changed_when: false
       run_once: yes
       delegate_to: localhost
-   
+
     - name: assert
       assert:
         that:
-          - _node1.stdout is search('node')        
-          - _node2.stdout is search('node')        
-          - _node1.stdout != _node2.stdout       
+          - _node1.stdout is search('node')
+          - _node2.stdout is search('node')
+          - _node1.stdout != _node2.stdout
       run_once: yes
       delegate_to: localhost

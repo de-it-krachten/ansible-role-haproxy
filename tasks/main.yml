@@ -33,7 +33,7 @@
     group: root
     owner: root
   notify: Restart haproxy
-  
+
 - name: Start services
   ansible.builtin.systemd:
     name: haproxy
