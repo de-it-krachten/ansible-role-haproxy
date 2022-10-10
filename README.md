@@ -6,6 +6,16 @@
 Manage HAProxy
 
 
+
+## Dependencies
+
+#### Roles
+None
+
+#### Collections
+- community.general
+- ansible.posix
+
 ## Platforms
 
 Supported platforms
@@ -54,6 +64,7 @@ haproxy_config:
       - server 1m
       - check 10s
 </pre></code>
+
 
 ### vars/family-RedHat.yml
 <pre><code>
