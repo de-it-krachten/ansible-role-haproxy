@@ -1,7 +1,7 @@
 ---
 
 - name: Load variables based on OS type
-  include_vars: "{{ lookup('first_found', params) }}"
+  ansible.builtin.include_vars: "{{ lookup('first_found', params) }}"
   vars:
     params:
       files:
@@ -14,34 +14,34 @@
         - "vars"
 
 - name: Install packages
-  package:
+  ansible.builtin.package:
     name: "{{ haproxy_packages }}"
     state: present
 
 - name: Allow IP forwarding
-  sysctl:
+  ansible.posix.sysctl:
     name: net.ipv4.ip_forward
     value: "1"
     sysctl_set: yes
     state: present
 
 - name: Create configuration from template
-  template:
+  ansible.builtin.template:
     src: templates/haproxy.cfg.j2
     dest: /etc/haproxy/haproxy.cfg
     mode: 0644
     group: root
     owner: root
   notify: Restart haproxy
-  
+
 - name: Start services
-  systemd:
+  ansible.builtin.systemd:
     name: haproxy
     state: started
     enabled: yes
 
 - name: Open firewall ports
-  include_role:
+  ansible.builtin.include_role:
     name: firewall
   vars:
     firewall_ports: "{{ haproxy_firewall_ports }}"
