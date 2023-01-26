@@ -33,8 +33,8 @@ molecule:
       prepare_firewall: true
   requirements:
     roles_extra:
-      - keepalived
-      - nginx
+      - deitkrachten.keepalived
+      - deitkrachten.nginx
 
 ci_templates:
   molecule.yml.j2:
