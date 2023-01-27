@@ -28,16 +28,33 @@ platforms:
     supported: false
 
 molecule:
+  nodes:
+    - name: nginx1
+      groups:
+        - nginx
+    - name: nginx2
+      groups:
+        - nginx
+    - name: master
+      groups:
+        - haproxy
+        - keepalived_master
+    - name: backup
+      groups:
+        - haproxy
+        - keepalived_backup
   prepare:
     vars:
       prepare_firewall: true
+      activate_epel: true
+      install_python: true
   requirements:
     roles_extra:
       - deitkrachten.keepalived
       - deitkrachten.nginx
 
 ci_templates:
-  molecule.yml.j2:
-    force: false
+  # molecule.yml.j2:
+  #   force: false
   converge.yml:
     force: false
