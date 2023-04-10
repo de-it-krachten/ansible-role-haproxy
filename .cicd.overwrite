@@ -20,24 +20,41 @@ platforms:
   ubuntu1804:
     ci: false
     supported: false
-  fedora35:
+  fedora36:
     ci: false
     supported: false
-  fedora36:
+  fedora37:
     ci: false
     supported: false
 
 molecule:
+  nodes:
+    - name: nginx1
+      groups:
+        - nginx
+    - name: nginx2
+      groups:
+        - nginx
+    - name: master
+      groups:
+        - haproxy
+        - keepalived_master
+    - name: backup
+      groups:
+        - haproxy
+        - keepalived_backup
   prepare:
     vars:
       prepare_firewall: true
+      activate_epel: true
+      install_python: true
   requirements:
     roles_extra:
-      - keepalived
-      - nginx
+      - deitkrachten.keepalived
+      - deitkrachten.nginx
 
 ci_templates:
-  molecule.yml.j2:
-    force: false
+  # molecule.yml.j2:
+  #   force: false
   converge.yml:
     force: false
