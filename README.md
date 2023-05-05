@@ -67,14 +67,14 @@ haproxy_config:
 </pre></code>
 
 
-### vars/family-RedHat.yml
+### vars/family-Debian.yml
 <pre><code>
 # List of packages required for haproxy
 haproxy_packages:
   - haproxy
 </pre></code>
 
-### vars/family-Debian.yml
+### vars/family-RedHat.yml
 <pre><code>
 # List of packages required for haproxy
 haproxy_packages:
