@@ -25,6 +25,7 @@ Supported platforms
 - RockyLinux 8
 - RockyLinux 9
 - OracleLinux 8
+- OracleLinux 9
 - AlmaLinux 8
 - AlmaLinux 9
 - Debian 11 (Bullseye)
@@ -66,14 +67,14 @@ haproxy_config:
 </pre></code>
 
 
-### vars/family-RedHat.yml
+### vars/family-Debian.yml
 <pre><code>
 # List of packages required for haproxy
 haproxy_packages:
   - haproxy
 </pre></code>
 
-### vars/family-Debian.yml
+### vars/family-RedHat.yml
 <pre><code>
 # List of packages required for haproxy
 haproxy_packages:
@@ -88,13 +89,13 @@ haproxy_packages:
 - name: sample playbook for role 'haproxy'
   hosts: nginx
   roles:
-    - nginx
+    - deitkrachten.nginx
   vars:
     nginx_default_server: true
   tasks:
     - name: Open firewall ports
       include_role:
-        name: firewall
+        name: deitkrachten.firewall
       vars:
         firewall_ports:
           - { port: 80, proto: tcp }
@@ -196,7 +197,7 @@ haproxy_packages:
         auth_type: AH
         auth_pass: TEST2
   roles:
-    - keepalived
+    - deitkrachten.keepalived
   tasks:
     - name: Save nginx nodes
       set_fact:
