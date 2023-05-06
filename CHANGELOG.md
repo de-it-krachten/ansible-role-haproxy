@@ -1,3 +1,15 @@
+# [1.3.0](https://github.com/de-it-krachten/ansible-role-haproxy/compare/v1.2.0...v1.3.0) (2023-05-06)
+
+
+### Bug Fixes
+
+* Refactor molecule.yml.j2 to use default template ([58d6752](https://github.com/de-it-krachten/ansible-role-haproxy/commit/58d67520ee5d016695e12623092b39f097e1bbd6))
+
+
+### Features
+
+* Move to namespaced role names ([2e5aed0](https://github.com/de-it-krachten/ansible-role-haproxy/commit/2e5aed06900692a40de31e46aebc6546f079b7ac))
+
 # [1.2.0](https://github.com/de-it-krachten/ansible-role-haproxy/compare/v1.1.0...v1.2.0) (2022-10-12)
 
 
