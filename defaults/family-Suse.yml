@@ -1,0 +1,5 @@
+---
+
+# List of packages required for haproxy
+haproxy_packages:
+  - haproxy
