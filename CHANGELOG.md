@@ -1,3 +1,16 @@
+# [1.4.0](https://github.com/de-it-krachten/ansible-role-haproxy/compare/v1.3.0...v1.4.0) (2023-09-08)
+
+
+### Bug Fixes
+
+* Fix loop label to string ([d26f0c1](https://github.com/de-it-krachten/ansible-role-haproxy/commit/d26f0c16cbfe2c95e14db6ead051bd0ffe0f5714))
+* Remove initial support for SLES/OpenSUSE ([c6ad48f](https://github.com/de-it-krachten/ansible-role-haproxy/commit/c6ad48f885bb51fcea87134a05194649dc8e5632))
+
+
+### Features
+
+* Update supported platforms & CI ([3af06cc](https://github.com/de-it-krachten/ansible-role-haproxy/commit/3af06cc4c61c352eba2c36f59876255fc38fc8e4))
+
 # [1.3.0](https://github.com/de-it-krachten/ansible-role-haproxy/compare/v1.2.0...v1.3.0) (2023-05-06)
 
 
