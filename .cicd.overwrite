@@ -14,16 +14,19 @@ platforms:
   centos7:
     ci: false
     supported: false
+  opensuse15:
+    ci: false
+    supported: false
   debian10:
     ci: false
     supported: false
   ubuntu1804:
     ci: false
     supported: false
-  fedora36:
+  fedora37:
     ci: false
     supported: false
-  fedora37:
+  fedora38:
     ci: false
     supported: false
 

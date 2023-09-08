@@ -28,7 +28,9 @@ Supported platforms
 - OracleLinux 9
 - AlmaLinux 8
 - AlmaLinux 9
+- SUSE Linux Enterprise 15<sup>1</sup>
 - Debian 11 (Bullseye)
+- Debian 12 (Bookworm)
 - Ubuntu 20.04 LTS
 - Ubuntu 22.04 LTS
 
@@ -66,20 +68,27 @@ haproxy_config:
       - check 10s
 </pre></code>
 
-
-### vars/family-Debian.yml
+### defaults/family-Debian.yml
 <pre><code>
 # List of packages required for haproxy
 haproxy_packages:
   - haproxy
 </pre></code>
 
-### vars/family-RedHat.yml
+### defaults/family-Suse.yml
 <pre><code>
 # List of packages required for haproxy
 haproxy_packages:
   - haproxy
 </pre></code>
+
+### defaults/family-RedHat.yml
+<pre><code>
+# List of packages required for haproxy
+haproxy_packages:
+  - haproxy
+</pre></code>
+
 
 
 
