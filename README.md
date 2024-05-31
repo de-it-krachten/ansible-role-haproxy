@@ -13,7 +13,6 @@ Manage HAProxy
 None
 
 #### Collections
-- community.general
 - ansible.posix
 
 ## Platforms
@@ -33,6 +32,7 @@ Supported platforms
 - Debian 12 (Bookworm)
 - Ubuntu 20.04 LTS
 - Ubuntu 22.04 LTS
+- Ubuntu 24.04 LTS
 
 Note:
 <sup>1</sup> : no automated testing is performed on these platforms
@@ -75,14 +75,14 @@ haproxy_packages:
   - haproxy
 </pre></code>
 
-### defaults/family-Suse.yml
+### defaults/family-RedHat.yml
 <pre><code>
 # List of packages required for haproxy
 haproxy_packages:
   - haproxy
 </pre></code>
 
-### defaults/family-RedHat.yml
+### defaults/family-Suse.yml
 <pre><code>
 # List of packages required for haproxy
 haproxy_packages:
@@ -107,29 +107,28 @@ haproxy_packages:
         name: deitkrachten.firewall
       vars:
         firewall_ports:
-          - { port: 80, proto: tcp }
-
+          - port: 80
+            proto: tcp
     - name: Create index.html for node1
       copy:
         content: node1
         dest: /usr/share/nginx/html/index.html
-        mode: "0644"
+        mode: '0644'
       when: inventory_hostname == groups['nginx'][0]
-
     - name: Create index.html for node2
       copy:
         content: node2
         dest: /usr/share/nginx/html/index.html
-        mode: "0644"
+        mode: '0644'
       when: inventory_hostname == groups['nginx'][1]
-
-
 - name: sample playbook for role 'haproxy'
   hosts: haproxy
   vars:
     haproxy_firewall_ports:
-      - { port: 80, proto: tcp }
-      - { port: 8404, proto: tcp }
+      - port: 80
+        proto: tcp
+      - port: 8404
+        proto: tcp
     haproxy_frontends:
       - name: stats
         options:
@@ -185,8 +184,8 @@ haproxy_packages:
         options:
           interface: eth0
           virtual_router_id: 1
-          state: "{{ 'MASTER' if keepalived_role == 'master' else 'BACKUP' }}"
-          priority: "{{ 150 if keepalived_role == 'master' else 100 }}"
+          state: '{{ ''MASTER'' if keepalived_role == ''master'' else ''BACKUP'' }}'
+          priority: '{{ 150 if keepalived_role == ''master'' else 100 }}'
           advert_int: 1
           version: 2
         cluster_ip: 172.17.0.100
@@ -197,8 +196,8 @@ haproxy_packages:
         options:
           interface: eth0
           virtual_router_id: 2
-          state: "{{ 'MASTER' if keepalived_role == 'master' else 'BACKUP' }}"
-          priority: "{{ 150 if keepalived_role == 'master' else 100 }}"
+          state: '{{ ''MASTER'' if keepalived_role == ''master'' else ''BACKUP'' }}'
+          priority: '{{ 150 if keepalived_role == ''master'' else 100 }}'
           advert_int: 1
           version: 2
         cluster_ip: 172.17.0.200
@@ -210,9 +209,8 @@ haproxy_packages:
   tasks:
     - name: Save nginx nodes
       set_fact:
-        nginx_node1: "{{ groups['nginx'][0] }}"
-        nginx_node2: "{{ groups['nginx'][1] }}"
-
+        nginx_node1: '{{ groups[''nginx''][0] }}'
+        nginx_node2: '{{ groups[''nginx''][1] }}'
     - name: Include role 'haproxy'
       include_role:
         name: haproxy
