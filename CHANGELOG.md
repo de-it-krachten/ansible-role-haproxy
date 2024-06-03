@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/de-it-krachten/ansible-role-haproxy/compare/v1.4.0...v1.5.0) (2024-06-03)
+
+
+### Features
+
+* Add support for Ubuntu 24.04 LTS + Fedora 40 ([2ebcf83](https://github.com/de-it-krachten/ansible-role-haproxy/commit/2ebcf83b9605ae9ef745426c93e6672279364817))
+
 # [1.4.0](https://github.com/de-it-krachten/ansible-role-haproxy/compare/v1.3.0...v1.4.0) (2023-09-08)
 
 
