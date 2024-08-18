@@ -1,7 +1,6 @@
 ---
 
-haproxy_firewall_ports:
-  - 80
+haproxy_firewall_ports: []
 
 haproxy_config:
   global:
