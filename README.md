@@ -40,9 +40,19 @@ Note:
 ## Role Variables
 ### defaults/main.yml
 <pre><code>
-haproxy_firewall_ports:
-  - 80
+# HAProxy configuration file
+haproxy_config_file: /etc/haproxy/haproxy.cfg
 
+# Template to use for haproxy.cfg
+haproxy_template: templates/haproxy.cfg.j2
+
+# Ports to open on the firewall
+haproxy_firewall_ports: []
+
+# Create backup of existing configuration
+haproxy_config_backup: false
+
+# Default proxy configuration
 haproxy_config:
   global:
     log: 127.0.0.1 local0
