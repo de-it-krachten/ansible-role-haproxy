@@ -24,7 +24,7 @@
     group: root
     owner: root
     backup: "{{ haproxy_config_backup | bool }}"
-  notify: Restart haproxy
+  notify: Reload haproxy
 
 - name: Start services
   ansible.builtin.systemd:
