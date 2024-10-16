@@ -3,35 +3,8 @@
 - name: Load variables based on OS type
   ansible.builtin.include_tasks: vars.yml
 
-- name: Install packages
-  ansible.builtin.package:
-    name: "{{ haproxy_packages }}"
-    state: present
+- name: Installation
+  ansible.builtin.include_tasks: install.yml
 
-- name: Allow IP forwarding
-  ansible.posix.sysctl:
-    name: net.ipv4.ip_forward
-    value: "1"
-    sysctl_set: yes
-    state: present
-
-- name: Create configuration from template
-  ansible.builtin.template:
-    src: templates/haproxy.cfg.j2
-    dest: /etc/haproxy/haproxy.cfg
-    mode: 0644
-    group: root
-    owner: root
-  notify: Restart haproxy
-
-- name: Start services
-  ansible.builtin.systemd:
-    name: haproxy
-    state: started
-    enabled: yes
-
-- name: Open firewall ports
-  ansible.builtin.include_role:
-    name: deitkrachten.firewall
-  vars:
-    firewall_ports: "{{ haproxy_firewall_ports }}"
+- name: Configuration
+  ansible.builtin.include_tasks: config.yml
