@@ -1,3 +1,16 @@
+# [1.6.0](https://github.com/de-it-krachten/ansible-role-haproxy/compare/v1.5.0...v1.6.0) (2024-10-16)
+
+
+### Bug Fixes
+
+* reload service instead of restart ([085d7cd](https://github.com/de-it-krachten/ansible-role-haproxy/commit/085d7cdd92bc79ab0a84c584767ad2ce20d5cb21))
+
+
+### Features
+
+* Add SELinux boolean to allow listening on all ports ([2bcec3f](https://github.com/de-it-krachten/ansible-role-haproxy/commit/2bcec3f625224a883c4cbc02ae8c8636395f7229))
+* support custom template + config location ([f2be56c](https://github.com/de-it-krachten/ansible-role-haproxy/commit/f2be56cb784c126a381856156adf961faa338748))
+
 # [1.5.0](https://github.com/de-it-krachten/ansible-role-haproxy/compare/v1.4.0...v1.5.0) (2024-06-03)
 
 
