@@ -57,3 +57,7 @@ roles:
     src: https://github.com/de-it-krachten/ansible-role-nginx.git
     version: main
     scm: git
+  - name: deitkrachten.rsyslog
+    src: https://github.com/de-it-krachten/ansible-role-rsyslog.git
+    version: main
+    scm: git

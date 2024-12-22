@@ -55,6 +55,7 @@ molecule:
     roles_extra:
       - deitkrachten.keepalived
       - deitkrachten.nginx
+      - deitkrachten.rsyslog
 
 ci_templates:
   # molecule.yml.j2:
