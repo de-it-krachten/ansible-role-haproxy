@@ -3,6 +3,7 @@
 - name: Converge
   hosts: nginx
   roles:
+    - deitkrachten.rsyslog
     - deitkrachten.nginx
   vars:
     nginx_default_server: true
@@ -111,6 +112,7 @@
         auth_type: AH
         auth_pass: TEST2
   roles:
+    - deitkrachten.rsyslog
     - deitkrachten.keepalived
   tasks:
     - name: Save nginx nodes

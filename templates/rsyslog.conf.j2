@@ -1,0 +1,15 @@
+{% if haproxy_syslog_method == 'socket' %}
+# Collect log using socket
+$AddUnixListenSocket {{ haproxy_chroot_path }}/dev/log
+
+# Syslog facility & file location
+{{ haproxy_facility }}.* {{ haproxy_log_file }}
+{% elif haproxy_syslog_method == 'udp' %}
+# Collect log with UDP
+$ModLoad imudp
+$UDPServerAddress 127.0.0.1
+$UDPServerRun 514
+
+# Syslog facility & file location
+{{ haproxy_facility }}.* {{ haproxy_log_file }}
+{% endif %}
