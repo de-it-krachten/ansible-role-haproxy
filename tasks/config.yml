@@ -37,3 +37,10 @@
     name: deitkrachten.firewall
   vars:
     firewall_ports: "{{ haproxy_firewall_ports }}"
+
+- name: Activate logging via rsyslog
+  ansible.builtin.template:
+    src: "{{ haproxy_syslog_template }}"
+    dest: "{{ haproxy_syslog_file }}"
+    mode: "0644"
+  notify: Restart rsyslog

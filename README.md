@@ -52,12 +52,15 @@ haproxy_firewall_ports: []
 # Create backup of existing configuration
 haproxy_config_backup: false
 
+# Chroot path
+haproxy_chroot_path: /var/lib/haproxy
+
 # Default proxy configuration
 haproxy_config:
   global:
     log: 127.0.0.1 local0
-    chroot: /var/lib/haproxy
-    stats: socket /var/lib/haproxy/stats user haproxy group haproxy mode 660 level operator
+    chroot: "{{ haproxy_chroot_path }}"
+    stats: socket {{ haproxy_chroot_path }}/stats user haproxy group haproxy mode 660 level operator
     pidfile: /var/run/haproxy.pid
     user: haproxy
     group: haproxy
@@ -76,6 +79,13 @@ haproxy_config:
       - client 1m
       - server 1m
       - check 10s
+
+# Logging via rsyslog
+haproxy_syslog_template: rsyslog.conf.j2
+haproxy_syslog_file: /etc/rsyslog.d/10-haproxy.conf
+haproxy_syslog_method: udp  # can be 'socket'
+haproxy_facility: local0
+haproxy_log_file: /var/log/haproxy.log
 </pre></code>
 
 ### defaults/family-Debian.yml
@@ -108,6 +118,7 @@ haproxy_packages:
 - name: sample playbook for role 'haproxy'
   hosts: nginx
   roles:
+    - deitkrachten.rsyslog
     - deitkrachten.nginx
   vars:
     nginx_default_server: true
@@ -215,6 +226,7 @@ haproxy_packages:
         auth_type: AH
         auth_pass: TEST2
   roles:
+    - deitkrachten.rsyslog
     - deitkrachten.keepalived
   tasks:
     - name: Save nginx nodes
