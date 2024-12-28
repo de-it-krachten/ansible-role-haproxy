@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/de-it-krachten/ansible-role-haproxy/compare/v1.6.0...v1.7.0) (2024-12-28)
+
+
+### Features
+
+* Implemented logging via rsyslog ([f126e73](https://github.com/de-it-krachten/ansible-role-haproxy/commit/f126e738eb2239da03f433182c87137643b02516))
+
 # [1.6.0](https://github.com/de-it-krachten/ansible-role-haproxy/compare/v1.5.0...v1.6.0) (2024-10-16)
 
 
