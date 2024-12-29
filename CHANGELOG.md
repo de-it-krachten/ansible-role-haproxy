@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/de-it-krachten/ansible-role-haproxy/compare/v1.7.0...v1.8.0) (2024-12-29)
+
+
+### Features
+
+* Update supported platforms & CI ([44f0cd9](https://github.com/de-it-krachten/ansible-role-haproxy/commit/44f0cd9b5032e4dc02418d7914961e0030fd2751))
+
 # [1.7.0](https://github.com/de-it-krachten/ansible-role-haproxy/compare/v1.6.0...v1.7.0) (2024-12-28)
 
 
