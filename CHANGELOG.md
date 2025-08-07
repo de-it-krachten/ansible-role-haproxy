@@ -1,3 +1,19 @@
+# [1.9.0](https://github.com/de-it-krachten/ansible-role-haproxy/compare/v1.8.0...v1.9.0) (2025-08-07)
+
+
+### Bug Fixes
+
+* Make it possible to disable firewall management ([445500f](https://github.com/de-it-krachten/ansible-role-haproxy/commit/445500fe7c83664d8c2a7ea5e7b93b48cdb54b87))
+
+
+### Features
+
+* Add support for AlmaLinux 10 ([f1aee7e](https://github.com/de-it-krachten/ansible-role-haproxy/commit/f1aee7e167c7063efdc0369219019f3ab4a31e98))
+* Add support for Debian 13 (Trixie) ([9990930](https://github.com/de-it-krachten/ansible-role-haproxy/commit/9990930564f97a400457f2ab1901560dcaeb9c7b))
+* Add support for OracleLinux 10 ([8b756ee](https://github.com/de-it-krachten/ansible-role-haproxy/commit/8b756eebeed244a7b3bc3e72dd62329644dd7c43))
+* Add support for Red Hat Enterprise Linux 10 ([acbcdb9](https://github.com/de-it-krachten/ansible-role-haproxy/commit/acbcdb98114ffe8383e9ffbdaa241e5d44889c80))
+* Add support for RockyLinux 10 ([1dfadc0](https://github.com/de-it-krachten/ansible-role-haproxy/commit/1dfadc0b0d034d2381a7a6bc2de2416603aa9c20))
+
 # [1.8.0](https://github.com/de-it-krachten/ansible-role-haproxy/compare/v1.7.0...v1.8.0) (2024-12-29)
 
 
