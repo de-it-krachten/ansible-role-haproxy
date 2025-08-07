@@ -32,9 +32,10 @@
     state: started
     enabled: yes
 
-- name: Open firewall ports
+- name: Manage firewall
   ansible.builtin.include_role:
     name: deitkrachten.firewall
+  when: haproxy_manage_firewall | bool
   vars:
     firewall_ports: "{{ haproxy_firewall_ports }}"
 

@@ -9,6 +9,9 @@ haproxy_template: templates/haproxy.cfg.j2
 # Ports to open on the firewall
 haproxy_firewall_ports: []
 
+# Should firewall ports be managed by this role
+haproxy_manage_firewall: true
+
 # Create backup of existing configuration
 haproxy_config_backup: false
 
