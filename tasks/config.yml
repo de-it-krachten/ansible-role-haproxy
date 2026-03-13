@@ -1,11 +1,10 @@
 ---
 
-- name: Allow IP forwarding
-  ansible.posix.sysctl:
-    name: net.ipv4.ip_forward
-    value: "1"
-    sysctl_set: yes
-    state: present
+- name: Configure sysctl settings
+  ansible.builtin.include_role:
+    name: deitkrachten.sysctl
+  vars:
+    sysctl_settings: "{{ haproxy_sysctl_settings }}"
 
 - name: Allow SELinux enabled systems to listen on any port
   ansible.posix.seboolean:

@@ -62,5 +62,9 @@ roles:
     src: https://github.com/de-it-krachten/ansible-role-rsyslog
     version: main
     scm: git
+  - name: deitkrachten.sysctl
+    src: https://github.com/de-it-krachten/ansible-role-sysctl
+    version: main
+    scm: git
 
 collections: []

@@ -20,6 +20,14 @@ defaults
 {% endif %}
 {% endfor %}
 
+{% if haproxy_config.resolvers is defined %}
+{% for key, value in haproxy_config.resolvers.items() %}
+resolvers os_resolvers
+  nameserver dns1 10.235.252.132:53
+  hold valid 5m
+{% endif %}
+{% endif %}
+
 {% for frontend in haproxy_frontends %}
 frontend {{ frontend.name }}
 {% for key, value in frontend.options.items() %}

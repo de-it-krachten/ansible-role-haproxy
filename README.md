@@ -33,6 +33,8 @@ Supported platforms
 - AlmaLinux 10
 - SUSE Linux Enterprise 15<sup>1</sup>
 - SUSE Linux Enterprise 16<sup>1</sup>
+- openSUSE Leap 15
+- openSUSE Leap 16
 - Debian 11 (Bullseye)
 - Debian 12 (Bookworm)
 - Debian 13 (Trixie)
@@ -76,6 +78,8 @@ haproxy_config:
     group: haproxy
     daemon:
     maxconn: 512
+  resolvers:
+    hold_valid: 5m
   defaults:
     log: global
     mode: http
@@ -96,6 +100,11 @@ haproxy_syslog_file: /etc/rsyslog.d/10-haproxy.conf
 haproxy_syslog_method: udp  # can be 'socket'
 haproxy_facility: local0
 haproxy_log_file: /var/log/haproxy.log
+
+# Sysctl settings
+haproxy_sysctl_settings:
+  'net.ipv4.ip_forward': '1'
+  'net.ipv4.ip_nonlocal_bind': '1'
 </pre></code>
 
 ### defaults/family-Debian.yml

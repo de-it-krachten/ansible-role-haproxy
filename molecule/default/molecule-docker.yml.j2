@@ -34,6 +34,12 @@ platforms:
 {% for platform in MOLECULE_DISTROS %}
   - name: haproxy-{{ platform.name }}-nginx1
     image: "{{ platform.image }}"
+{% if platform.cap_add is defined %}
+    cap_add:
+{% for cap in platform.cap_add %}
+      - {{ cap }}
+{% endfor %}
+{% endif %}
 {% if platform.kernel_memory is defined %}
     kernel_memory: {{ platform.kernel_memory }}
 {% endif %}
@@ -73,6 +79,12 @@ platforms:
     groups: ['nginx']
   - name: haproxy-{{ platform.name }}-nginx2
     image: "{{ platform.image }}"
+{% if platform.cap_add is defined %}
+    cap_add:
+{% for cap in platform.cap_add %}
+      - {{ cap }}
+{% endfor %}
+{% endif %}
 {% if platform.kernel_memory is defined %}
     kernel_memory: {{ platform.kernel_memory }}
 {% endif %}
@@ -112,6 +124,12 @@ platforms:
     groups: ['nginx']
   - name: haproxy-{{ platform.name }}-master
     image: "{{ platform.image }}"
+{% if platform.cap_add is defined %}
+    cap_add:
+{% for cap in platform.cap_add %}
+      - {{ cap }}
+{% endfor %}
+{% endif %}
 {% if platform.kernel_memory is defined %}
     kernel_memory: {{ platform.kernel_memory }}
 {% endif %}
@@ -151,6 +169,12 @@ platforms:
     groups: ['haproxy', 'keepalived_master']
   - name: haproxy-{{ platform.name }}-backup
     image: "{{ platform.image }}"
+{% if platform.cap_add is defined %}
+    cap_add:
+{% for cap in platform.cap_add %}
+      - {{ cap }}
+{% endfor %}
+{% endif %}
 {% if platform.kernel_memory is defined %}
     kernel_memory: {{ platform.kernel_memory }}
 {% endif %}
