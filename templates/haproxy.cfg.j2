@@ -20,12 +20,12 @@ defaults
 {% endif %}
 {% endfor %}
 
-{% if haproxy_config.resolvers is defined %}
-{% for key, value in haproxy_config.resolvers.items() %}
+{% if haproxy_os_resolvers | bool and ansible_facts['ansible_dns']['nameservers'] | length > 0 %}
 resolvers os_resolvers
-  nameserver dns1 10.235.252.132:53
-  hold valid 5m
-{% endif %}
+{% for ns in ansible_facts['ansible_dns']['nameservers'] %}
+  nameserver dns{{ loop.index }} {{ ns }}
+  hold valid {{ haproxy_config['resolvers']['hold_valid'] }}
+{% endfor %}
 {% endif %}
 
 {% for frontend in haproxy_frontends %}

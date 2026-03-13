@@ -52,7 +52,10 @@ haproxy_syslog_method: udp  # can be 'socket'
 haproxy_facility: local0
 haproxy_log_file: /var/log/haproxy.log
 
+# Use OS resolvers
+haproxy_os_resolvers: false
+
 # Sysctl settings
 haproxy_sysctl_settings:
-  'net.ipv4.ip_forward': '1'
-  'net.ipv4.ip_nonlocal_bind': '1'
+  'net.ipv4.ip_forward': '1'  # Enable IP forwarding
+  'net.ipv4.ip_nonlocal_bind': '1'  # Allow binding on non-local addresses
