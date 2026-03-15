@@ -31,7 +31,6 @@ Supported platforms
 - AlmaLinux 8
 - AlmaLinux 9
 - AlmaLinux 10
-- SUSE Linux Enterprise 15<sup>1</sup>
 - Debian 11 (Bullseye)
 - Debian 12 (Bookworm)
 - Debian 13 (Trixie)
@@ -41,6 +40,7 @@ Supported platforms
 
 Note:
 <sup>1</sup> : no automated testing is performed on these platforms
+
 
 ## Role Variables
 ### defaults/main.yml
@@ -74,6 +74,8 @@ haproxy_config:
     group: haproxy
     daemon:
     maxconn: 512
+  resolvers:
+    hold_valid: 5m
   defaults:
     log: global
     mode: http
@@ -94,6 +96,14 @@ haproxy_syslog_file: /etc/rsyslog.d/10-haproxy.conf
 haproxy_syslog_method: udp  # can be 'socket'
 haproxy_facility: local0
 haproxy_log_file: /var/log/haproxy.log
+
+# Use OS resolvers
+haproxy_os_resolvers: false
+
+# Sysctl settings
+haproxy_sysctl_settings:
+  'net.ipv4.ip_forward': '1'  # Enable IP forwarding
+  'net.ipv4.ip_nonlocal_bind': '1'  # Allow binding on non-local addresses
 </pre></code>
 
 ### defaults/family-Debian.yml
@@ -138,6 +148,11 @@ haproxy_packages:
         firewall_ports:
           - port: 80
             proto: tcp
+    - name: Create html directory
+      file:
+        path: /usr/share/nginx/html
+        state: directory
+        mode: '0755'
     - name: Create index.html for node1
       copy:
         content: node1

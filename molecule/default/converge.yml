@@ -15,6 +15,12 @@
         firewall_ports:
           - { port: 80, proto: tcp }
 
+    - name: Create html directory
+      file:
+        path: /usr/share/nginx/html
+        state: directory
+        mode: "0755"
+
     - name: Create index.html for node1
       copy:
         content: node1

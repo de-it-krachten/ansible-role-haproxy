@@ -20,6 +20,14 @@ defaults
 {% endif %}
 {% endfor %}
 
+{% if haproxy_os_resolvers | bool and ansible_facts['ansible_dns']['nameservers'] | length > 0 %}
+resolvers os_resolvers
+{% for ns in ansible_facts['ansible_dns']['nameservers'] %}
+  nameserver dns{{ loop.index }} {{ ns }}
+  hold valid {{ haproxy_config['resolvers']['hold_valid'] }}
+{% endfor %}
+{% endif %}
+
 {% for frontend in haproxy_frontends %}
 frontend {{ frontend.name }}
 {% for key, value in frontend.options.items() %}
