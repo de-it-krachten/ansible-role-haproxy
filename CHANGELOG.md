@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/de-it-krachten/ansible-role-haproxy/compare/v1.9.0...v1.10.0) (2026-03-15)
+
+
+### Features
+
+* Drop support for SUSE Linux Enterprise 15 ([5fb610d](https://github.com/de-it-krachten/ansible-role-haproxy/commit/5fb610d3368e60dea16d4b07aeb90eafdf45ad8a))
+
 # [1.9.0](https://github.com/de-it-krachten/ansible-role-haproxy/compare/v1.8.0...v1.9.0) (2025-08-07)
 
 
