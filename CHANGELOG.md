@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/de-it-krachten/ansible-role-haproxy/compare/v1.10.0...v1.11.0) (2026-03-16)
+
+
+### Features
+
+* Add support for running in Docker container ([59110f6](https://github.com/de-it-krachten/ansible-role-haproxy/commit/59110f651c84f5dc9aebd37e8813c15cfd2d6047))
+
 # [1.10.0](https://github.com/de-it-krachten/ansible-role-haproxy/compare/v1.9.0...v1.10.0) (2026-03-15)
 
 
