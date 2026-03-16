@@ -4,7 +4,12 @@
   ansible.builtin.include_role:
     name: deitkrachten.sysctl
   vars:
-    sysctl_settings: "{{ haproxy_sysctl_settings }}"
+    sysctl_settings: >-
+      {%- if haproxy_container | bool -%}
+      {{ haproxy_sysctl_settings | combine(haproxy_container_sysctl_settings) }}
+      {%- else -%}
+      {{ haproxy_sysctl_settings }}
+      {%- endif -%}
 
 - name: Allow SELinux enabled systems to listen on any port
   ansible.posix.seboolean:
@@ -23,13 +28,26 @@
     group: root
     owner: root
     backup: "{{ haproxy_config_backup | bool }}"
-  notify: Reload haproxy
+  notify: >-
+    {%- if haproxy_container | bool -%}
+    Reload haproxy container
+    {%- else -%}
+    Reload haproxy
+    {%- endif -%}
 
-- name: Start services
+- name: Start/enable services
   ansible.builtin.systemd:
     name: haproxy
     state: started
-    enabled: yes
+    enabled: true
+  when: not haproxy_container | bool
+
+- name: Stop/disable services
+  ansible.builtin.systemd:
+    name: haproxy
+    state: stopped
+    enabled: false
+  when: haproxy_container | bool
 
 - name: Manage firewall
   ansible.builtin.include_role:

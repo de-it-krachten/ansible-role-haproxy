@@ -19,6 +19,14 @@ platforms:
     supported: false
     ci: false
 
+# Dependencies
+dependencies:
+  roles:
+    - deitkrachten.docker_compose
+    - deitkrachten.firewall
+    - deitkrachten.sysctl
+
+# Molecule
 molecule:
   nodes:
     - name: nginx1
@@ -47,6 +55,7 @@ molecule:
       - deitkrachten.rsyslog
       - deitkrachten.sysctl
 
+# CI templates
 ci_templates:
   # molecule.yml.j2:
   #   force: false

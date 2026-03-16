@@ -10,7 +10,9 @@ Manage HAProxy
 ## Dependencies
 
 #### Roles
-None
+- deitkrachten.docker_compose
+- deitkrachten.firewall
+- deitkrachten.sysctl
 
 #### Collections
 - ansible.posix
@@ -100,10 +102,34 @@ haproxy_log_file: /var/log/haproxy.log
 # Use OS resolvers
 haproxy_os_resolvers: false
 
-# Sysctl settings
+# Sysctl settings (host)
 haproxy_sysctl_settings:
   'net.ipv4.ip_forward': '1'  # Enable IP forwarding
   'net.ipv4.ip_nonlocal_bind': '1'  # Allow binding on non-local addresses
+
+# ----------------------------------------------------------
+# HAProxy container (docker / podman)
+# ----------------------------------------------------------
+
+# Use container instead of OS packages based haproxy
+haproxy_container: false
+
+# Container platform to use
+haproxy_container_platform: docker
+
+# Container name
+haproxy_container_name: haproxy
+
+# Container image to use
+haproxy_container_image: haproxy:2.4-alpine
+
+# Compose template to use
+haproxy_container_compose_template: >-
+  {{ role_path + '/templates/docker-compose.yml.j2' }}
+
+# Sysctl settings specific for container hosts
+haproxy_container_sysctl_settings:
+  'net.ipv4.ip_unprivileged_port_start': '0'  # Allow non-root users to bind on ports <1024
 </pre></code>
 
 ### defaults/family-Debian.yml
