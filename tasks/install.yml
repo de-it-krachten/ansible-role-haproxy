@@ -4,3 +4,25 @@
   ansible.builtin.package:
     name: "{{ haproxy_packages }}"
     state: present
+  when: not haproxy_container | bool
+
+- name: Install container
+  when:
+    - haproxy_container | bool
+    - haproxy_container_platform == 'docker'
+  block:
+
+    # Use set_fact to ensure no jinja in variable value
+    - name: Define docker_compose template
+      ansible.builtin.set_fact:
+        docker_compose_template_file: "{{ haproxy_container_compose_template }}"
+
+    - name: Execute common code for setting up container
+      ansible.builtin.include_role:
+        name: deitkrachten.docker_compose
+        tasks_from: template.yml
+      vars:
+        docker_compose_root: "{{ docker_root }}"
+        docker_compose_project_name: haproxy
+        # docker_compose_template_file: "{{ haproxy_container_compose_template }}"
+        docker_compose_become: true

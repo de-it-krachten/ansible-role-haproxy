@@ -1,0 +1,12 @@
+services:
+  haproxy:
+    image: {{ haproxy_container_image }}
+    container_name: haproxy
+    network_mode: host
+    volumes:
+      - /etc/haproxy:/usr/local/etc/haproxy:ro
+    restart: unless-stopped
+    logging:
+      driver: journald
+      options:
+        tag: haproxy
