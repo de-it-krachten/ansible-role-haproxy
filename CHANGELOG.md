@@ -1,3 +1,10 @@
+## [1.11.1](https://github.com/de-it-krachten/ansible-role-haproxy/compare/v1.11.0...v1.11.1) (2026-04-08)
+
+
+### Bug Fixes
+
+* Add optional variable haproxy_config_dryrun ([3683a5f](https://github.com/de-it-krachten/ansible-role-haproxy/commit/3683a5f7e81b8afb1e9b617c232c7e3f013dd6eb))
+
 # [1.11.0](https://github.com/de-it-krachten/ansible-role-haproxy/compare/v1.10.0...v1.11.0) (2026-03-16)
 
 
