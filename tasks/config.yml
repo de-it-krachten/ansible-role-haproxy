@@ -20,45 +20,62 @@
     - ansible_selinux is defined
     - ansible_selinux['status'] == 'enabled'
 
-- name: Create configuration from template
-  ansible.builtin.template:
-    src: "{{ haproxy_template }}"
-    dest: "{{ haproxy_config_file }}"
-    mode: "0644"
-    group: root
-    owner: root
-    backup: "{{ haproxy_config_backup | bool }}"
-  notify: >-
-    {%- if haproxy_container | bool -%}
-    Reload haproxy container
-    {%- else -%}
-    Reload haproxy
-    {%- endif -%}
 
-- name: Start/enable services
-  ansible.builtin.systemd:
-    name: haproxy
-    state: started
-    enabled: true
-  when: not haproxy_container | bool
+- name: Create configuration from template (active)
+  when: not haproxy_config_activate | bool
+  block:
 
-- name: Stop/disable services
-  ansible.builtin.systemd:
-    name: haproxy
-    state: stopped
-    enabled: false
-  when: haproxy_container | bool
+    - name: Create configuration from template (not-active)
+      ansible.builtin.template:
+        src: "{{ haproxy_template }}"
+        dest: "{{ haproxy_config_file }}.{{ ansible_facts['date_time']['iso8601_basic_short'] }}.inactive"
+        mode: "0644"
+        group: root
+        owner: root
 
-- name: Manage firewall
-  ansible.builtin.include_role:
-    name: deitkrachten.firewall
-  when: haproxy_manage_firewall | bool
-  vars:
-    firewall_ports: "{{ haproxy_firewall_ports }}"
+- name: Create configuration from template (active)
+  when: haproxy_config_activate | bool
+  block:
 
-- name: Activate logging via rsyslog
-  ansible.builtin.template:
-    src: "{{ haproxy_syslog_template }}"
-    dest: "{{ haproxy_syslog_file }}"
-    mode: "0644"
-  notify: Restart rsyslog
+    - name: Create configuration from template
+      ansible.builtin.template:
+        src: "{{ haproxy_template }}"
+        dest: "{{ haproxy_config_file }}"
+        mode: "0644"
+        group: root
+        owner: root
+        backup: "{{ haproxy_config_backup | bool }}"
+      notify: >-
+        {%- if haproxy_container | bool -%}
+        Reload haproxy container
+        {%- else -%}
+        Reload haproxy
+        {%- endif -%}
+
+    - name: Start/enable services
+      ansible.builtin.systemd:
+        name: haproxy
+        state: started
+        enabled: true
+      when: not haproxy_container | bool
+
+    - name: Stop/disable services
+      ansible.builtin.systemd:
+        name: haproxy
+        state: stopped
+        enabled: false
+      when: haproxy_container | bool
+
+    - name: Manage firewall
+      ansible.builtin.include_role:
+        name: deitkrachten.firewall
+      when: haproxy_manage_firewall | bool
+      vars:
+        firewall_ports: "{{ haproxy_firewall_ports }}"
+
+    - name: Activate logging via rsyslog
+      ansible.builtin.template:
+        src: "{{ haproxy_syslog_template }}"
+        dest: "{{ haproxy_syslog_file }}"
+        mode: "0644"
+      notify: Restart rsyslog

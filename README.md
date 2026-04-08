@@ -65,6 +65,10 @@ haproxy_config_backup: false
 # Chroot path
 haproxy_chroot_path: /var/lib/haproxy
 
+# Activate the new configuration immediately
+# When set to `false`, an alternative config file will be created
+haproxy_config_activate: true
+
 # Default proxy configuration
 haproxy_config:
   global:
