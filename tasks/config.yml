@@ -17,8 +17,8 @@
     state: true
     persistent: true
   when:
-    - ansible_selinux is defined
-    - ansible_selinux['status'] == 'enabled'
+    - ansible_facts.selinux is defined
+    - ansible_facts.selinux['status'] == 'enabled'
 
 
 - name: Create configuration from template (active)
