@@ -39,6 +39,7 @@ Supported platforms
 - Ubuntu 20.04 LTS
 - Ubuntu 22.04 LTS
 - Ubuntu 24.04 LTS
+- Ubuntu 26.04 LTS
 
 Note:
 <sup>1</sup> : no automated testing is performed on these platforms
@@ -234,8 +235,10 @@ haproxy_packages:
           option: httpchk HEAD /
           mode: http
           server:
-            - node1 {{ hostvars[nginx_node1]['ansible_default_ipv4']['address'] }}:80
-            - node2 {{ hostvars[nginx_node2]['ansible_default_ipv4']['address'] }}:80
+            - node1 {{ hostvars[nginx_node1]['ansible_facts']['default_ipv4']['address']
+              }}:80
+            - node2 {{ hostvars[nginx_node2]['ansible_facts']['default_ipv4']['address']
+              }}:80
           source: 172.17.0.100
           log: global
       - name: backend2
@@ -244,8 +247,10 @@ haproxy_packages:
           option: httpchk HEAD /
           mode: http
           server:
-            - node1 {{ hostvars[nginx_node1]['ansible_default_ipv4']['address'] }}:80
-            - node2 {{ hostvars[nginx_node2]['ansible_default_ipv4']['address'] }}:80
+            - node1 {{ hostvars[nginx_node1]['ansible_facts']['default_ipv4']['address']
+              }}:80
+            - node2 {{ hostvars[nginx_node2]['ansible_facts']['default_ipv4']['address']
+              }}:80
           source: 172.17.0.200
           log: global
     keepalived_vrrp_sync_groups:
