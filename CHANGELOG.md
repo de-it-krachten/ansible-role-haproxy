@@ -1,3 +1,17 @@
+# [1.12.0](https://github.com/de-it-krachten/ansible-role-haproxy/compare/v1.11.1...v1.12.0) (2026-08-05)
+
+
+### Bug Fixes
+
+* Refactor due to legacy fact renaming ([3c6f69c](https://github.com/de-it-krachten/ansible-role-haproxy/commit/3c6f69cdbe2f61a95030b54c70efa008c2f496ab))
+* Standarize vars.yml ([d466818](https://github.com/de-it-krachten/ansible-role-haproxy/commit/d466818e2b0bae91d7070fc0d1f7c33002d392bd))
+
+
+### Features
+
+* Add support for ansible-core 2.20+ ([a26ca28](https://github.com/de-it-krachten/ansible-role-haproxy/commit/a26ca28980b849f8306502bee55df1bb5ea5a339))
+* Added support for Ubuntu 26.04 LTS ([b6fd0a5](https://github.com/de-it-krachten/ansible-role-haproxy/commit/b6fd0a52bccf289f9477109ba0a33d783782399b))
+
 ## [1.11.1](https://github.com/de-it-krachten/ansible-role-haproxy/compare/v1.11.0...v1.11.1) (2026-04-08)
 
 
