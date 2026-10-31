@@ -52,6 +52,9 @@
         Reload haproxy
         {%- endif -%}
 
+    - name: Get state of haproxy service
+      ansible.builtin.service_facts:
+
     - name: Start/enable services
       ansible.builtin.systemd:
         name: haproxy
@@ -64,7 +67,10 @@
         name: haproxy
         state: stopped
         enabled: false
-      when: haproxy_container | bool
+      ignore_errors: true
+      when:
+        - haproxy_container | bool
+        - ansible_facts.services['haproxy.service'] is defined
 
     - name: Manage firewall
       ansible.builtin.include_role:
