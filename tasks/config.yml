@@ -62,7 +62,7 @@
         enabled: true
       when: not haproxy_container | bool
 
-    - name: Stop/disable services
+    - name: Stop/disable services  # noqa ignore-errors
       ansible.builtin.systemd:
         name: haproxy
         state: stopped
